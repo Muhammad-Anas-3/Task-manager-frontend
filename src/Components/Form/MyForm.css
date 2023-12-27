@@ -1,0 +1,44 @@
+.form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_input {
+  width: 30vw;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 0 10px;
+  background: rgb(240, 240, 240);
+  color: #333;
+  border: none;
+  margin-right: 5px;
+}
+
+.task_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 70px;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #128cef;
+  border: none;
+  color: white;
+}
+.task_btn:hover {
+  background-color: #197dab;
+}
+.err_container {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  color: white;
+}
+@media screen and (max-width: 600px) {
+  .main_input {
+    width: 50vw;
+  }
+}

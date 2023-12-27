@@ -1,0 +1,39 @@
+.task {
+  display: flex;
+  border: 1px solid gray;
+  width: 35vw;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px 12px;
+  color: rgb(215, 212, 212);
+  margin: 8px 0;
+  height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+}
+.delete_icon {
+  color: gray;
+  cursor: pointer;
+  margin: 5px;
+}
+.delete_icon:hover {
+  color: rgb(173, 30, 30);
+  transition: 0.2s ease-in-out;
+}
+.Edit_Task {
+  color: gray;
+  cursor: pointer;
+  margin: 3px 3px 0 3px;
+}
+.Edit_Task:hover {
+  color: white;
+}
+.taskName{
+  width: 60vw;
+}
+
+@media screen and (max-width: 600px) {
+  .task {
+    width: 70vw;
+  }
+}

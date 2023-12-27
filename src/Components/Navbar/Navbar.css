@@ -1,0 +1,30 @@
+.Navbar {
+  width: 100vw;
+  height: 100px;
+  background-color: rgb(25, 22, 22);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Rocket {
+  width: 30px !important;
+  height: 46px !important;
+  color: rgb(89, 89, 207) !important;
+}
+.logo :nth-child(2) {
+  color: rgb(122, 186, 201);
+}
+.logo :nth-child(3) {
+  color: #4ea8de;
+}
+
+@media screen and (max-width: 500px) {
+  .logo h1 {
+    font-size: 24px;
+  }
+}

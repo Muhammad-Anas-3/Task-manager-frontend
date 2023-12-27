@@ -1,0 +1,16 @@
+.NoTask_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  color: rgb(159, 167, 216);
+  text-align: center;
+}
+.NoTask_container > p {
+  font-size: 22px;
+}
+@media screen and (max-width: 800px) {
+  .NoTask_container > p {
+    font-size: 15px;
+  }
+}
