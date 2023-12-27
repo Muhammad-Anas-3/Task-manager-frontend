@@ -7,7 +7,7 @@ import axios from "axios";
 function Task({ task, onDelete }) {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://node-projects-backend.vercel.app/api/v1/tasks/${task._id}`);
+      await axios.delete(`https://task-manager-backend-dun.vercel.app/api/v1/tasks/${task._id}`);
       onDelete(task._id);
     } catch (error) {
       console.log(error);

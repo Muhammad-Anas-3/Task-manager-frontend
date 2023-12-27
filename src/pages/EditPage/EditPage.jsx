@@ -15,7 +15,7 @@ function EditPage() {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
-          `https://node-projects-backend.vercel.app/api/v1/tasks/${id}`
+          `https://task-manager-backend-dun.vercel.app/api/v1/tasks/${id}`
         );
         const singleTask = response.data.data.task;
         setTask(singleTask);
@@ -33,7 +33,7 @@ function EditPage() {
 
   const handleEdit = async () => {
     try {
-      await axios.patch(`https://node-projects-backend.vercel.app/api/v1/tasks/${id}`, editedTask);
+      await axios.patch(`https://task-manager-backend-dun.vercel.app/api/v1/tasks/${id}`, editedTask);
     } catch (error) {
       console.log("Error response from server:", error.response);
     }

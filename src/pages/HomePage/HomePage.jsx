@@ -16,7 +16,7 @@ function HomePage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://node-projects-backend.vercel.app/api/v1/tasks");
+        const response = await axios.get("https://task-manager-backend-dun.vercel.app/api/v1/tasks");
         const taskData = response.data.data.tasks;
         setTasks(taskData);
       } catch (error) {
