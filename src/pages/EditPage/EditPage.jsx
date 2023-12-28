@@ -7,7 +7,7 @@ function EditPage() {
   const { id } = useParams();
   const [task, setTask] = useState({});
   const [editedTask, setEditedTask] = useState({
-    userName: "",
+    Task: "",
     completed: false,
   });
 
@@ -15,13 +15,13 @@ function EditPage() {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
-          `https://task-manager-backend-dun.vercel.app/api/v1/tasks/${id}`
+          `https://task-manager-backend-kappa.vercel.app/api/v1/tasks/${id}`
         );
         const singleTask = response.data.data.task;
         setTask(singleTask);
         setEditedTask((prev) => ({
           ...prev,
-          userName: singleTask.userName,
+          Task: singleTask.Task,
           completed: singleTask.completed,
         }));
       } catch (error) {
@@ -33,7 +33,10 @@ function EditPage() {
 
   const handleEdit = async () => {
     try {
-      await axios.patch(`https://task-manager-backend-dun.vercel.app/api/v1/tasks/${id}`, editedTask);
+      await axios.patch(
+        `https://task-manager-backend-kappa.vercel.app/api/v1/tasks/${id}`,
+        editedTask
+      );
     } catch (error) {
       console.log("Error response from server:", error.response);
     }
@@ -56,10 +59,10 @@ function EditPage() {
           <input
             type="text"
             className="Input"
-            name="userName"
-            value={editedTask.userName ?? ""}
+            name="Task"
+            value={editedTask.Task ?? ""}
             onChange={(e) =>
-              setEditedTask((prev) => ({ ...prev, userName: e.target.value }))
+              setEditedTask((prev) => ({ ...prev, Task: e.target.value }))
             }
           />
         </div>

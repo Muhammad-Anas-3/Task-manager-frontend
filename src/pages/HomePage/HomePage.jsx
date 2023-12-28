@@ -16,7 +16,9 @@ function HomePage() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://task-manager-backend-dun.vercel.app/api/v1/tasks");
+        const response = await axios.get(
+          "https://task-manager-backend-kappa.vercel.app/api/v1/tasks"
+        );
         const taskData = response.data.data.tasks;
         setTasks(taskData);
       } catch (error) {
@@ -38,7 +40,6 @@ function HomePage() {
   const deleteTask = (taskId) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
   };
-  
 
   return (
     <div>
@@ -47,7 +48,7 @@ function HomePage() {
         <Spinner />
       ) : (
         <div className="container">
-          <MyForm onHandleCreate={createTask} />
+          <MyForm onHandleCreate={createTask} loading={loading} setLoading={setLoading}/>
           <TotalTasks tasks={tasks} />
           {tasks.length == 0 ? (
             <NoTask />

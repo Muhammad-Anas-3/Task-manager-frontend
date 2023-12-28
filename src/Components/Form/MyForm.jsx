@@ -3,13 +3,15 @@ import "./MyForm.css";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import axios from "axios";
 
-function MyForm({ onHandleCreate }) {
+function MyForm({ onHandleCreate, loading, setLoading }) {
   const [inputValue, setInputValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const createTask = async (e) => {
+    setLoading(true);
     e.preventDefault();
     if (inputValue.length < 1) {
+      setLoading(false);
       setErrorMessage("Please enter a task before adding.");
       setTimeout(() => {
         setErrorMessage("");
@@ -19,12 +21,13 @@ function MyForm({ onHandleCreate }) {
     }
     try {
       const response = await axios.post(
-        "https://task-manager-backend-dun.vercel.app/api/v1/tasks",
+        "https://task-manager-backend-kappa.vercel.app/api/v1/tasks",
         {
-          userName: inputValue,
+          Task: inputValue,
         }
       );
       onHandleCreate(response.data.data.task);
+      setLoading(false);
       setInputValue("");
     } catch (error) {
       console.log(error);

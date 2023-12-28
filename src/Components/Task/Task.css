@@ -28,8 +28,11 @@
 .Edit_Task:hover {
   color: white;
 }
-.taskName{
+.taskName {
   width: 60vw;
+}
+.delete_btn_spinner {
+  margin: 5px 0px;
 }
 
 @media screen and (max-width: 600px) {
