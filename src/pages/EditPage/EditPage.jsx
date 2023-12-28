@@ -3,11 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditPage.css";
 import Alert from "../../Components/Alert/Alert";
+import { BeatLoader } from "react-spinners";
 
 function EditPage() {
   const { id } = useParams();
   const [task, setTask] = useState({});
   const [showMessage, setShowMessage] = useState(false);
+  const [editBtnSpinner, setEditBtnSpinner] = useState(false);
   const [editedTask, setEditedTask] = useState({
     Task: "",
     completed: false,
@@ -34,6 +36,7 @@ function EditPage() {
   }, [id]);
 
   const handleEdit = async () => {
+    setEditBtnSpinner(true);
     try {
       await axios.patch(
         `https://task-manager-backend-kappa.vercel.app/api/v1/tasks/${id}`,
@@ -43,6 +46,7 @@ function EditPage() {
       setTimeout(() => {
         setShowMessage(false);
       }, 1500);
+      setEditBtnSpinner(false);
     } catch (error) {
       console.log("Error response from server:", error.response);
     }
@@ -83,10 +87,18 @@ function EditPage() {
           />
         </div>
 
-        <button className="edit_task_btn" onClick={handleEdit}>
-          Edit
-        </button>
-        <div>{showMessage && <Alert msg={"Successfully Edited"} />}</div>
+        {editBtnSpinner ? (
+          <div className="edit_btn_Spinner">
+            <BeatLoader color="teal" size={15} />
+          </div>
+        ) : (
+          <button className="edit_task_btn" onClick={handleEdit}>
+            Edit
+          </button>
+        )}
+        <div className="msg_container">
+          {showMessage && <Alert msg={"Successfully Edited"} />}
+        </div>
       </div>
       <Link to="/" className="custom_link">
         <button className="back_to_home_btn">Back To Home Page</button>
