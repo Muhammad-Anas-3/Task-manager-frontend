@@ -41,4 +41,9 @@
   .main_input {
     width: 50vw;
   }
+  .err_container{
+   width: 100%;
+   margin-top: 20px;
+   text-align: center;
+  }
 }
