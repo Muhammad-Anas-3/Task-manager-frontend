@@ -55,7 +55,7 @@ function HomePage() {
           ) : (
             <div className="task_container">
               {tasks.map((task) => (
-                <Task key={task._id} task={task} onDelete={deleteTask} />
+                <Task key={task._id + task.completed} task={task} onDelete={deleteTask} />
               ))}
             </div>
           )}
