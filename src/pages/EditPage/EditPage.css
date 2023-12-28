@@ -106,11 +106,24 @@
   justify-content: center;
   align-items: center;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .box {
     width: 70vw;
   }
-  .back_to_home_btn {
+  .custom_link {
     width: 70vw;
+  }
+  .task_id .id {
+    font-size: inherit;
+  }
+}
+@media screen and (max-width: 500px) {
+  .task_id .id {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .task_id .id {
+    font-size: 10px;
   }
 }
