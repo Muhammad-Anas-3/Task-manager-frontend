@@ -8,6 +8,7 @@ import { ScaleLoader } from "react-spinners";
 
 function Task({ task, onDelete }) {
   const [deleteSpinner, setDeleteSpinner] = useState(false);
+  console.log(task.completed)
 
   const handleDelete = async () => {
     setDeleteSpinner(true);
