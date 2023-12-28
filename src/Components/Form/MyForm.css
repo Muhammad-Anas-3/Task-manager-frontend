@@ -27,6 +27,9 @@
   border: none;
   color: white;
 }
+.beat_loader{
+  width: 70px;
+}
 .task_btn:hover {
   background-color: #197dab;
 }

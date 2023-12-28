@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import "./MyForm.css";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import axios from "axios";
+import Alert from "../Alert/Alert";
+import { BeatLoader } from "react-spinners";
 
-function MyForm({ onHandleCreate, loading, setLoading }) {
+function MyForm({ onHandleCreate }) {
   const [inputValue, setInputValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [addBtnSpinner, setAddBtnSpinner] = useState(false);
 
   const createTask = async (e) => {
-    setLoading(true);
+    setAddBtnSpinner(true);
     e.preventDefault();
     if (inputValue.length < 1) {
-      setLoading(false);
-      setErrorMessage("Please enter a task before adding.");
+      setAddBtnSpinner(false);
+      setErrorMessage(true);
       setTimeout(() => {
         setErrorMessage("");
       }, 2000);
@@ -27,7 +30,7 @@ function MyForm({ onHandleCreate, loading, setLoading }) {
         }
       );
       onHandleCreate(response.data.data.task);
-      setLoading(false);
+      setAddBtnSpinner(false);
       setInputValue("");
     } catch (error) {
       console.log(error);
@@ -44,13 +47,17 @@ function MyForm({ onHandleCreate, loading, setLoading }) {
           className="main_input"
           placeholder="Enter a new task"
         />
-        <button className="task_btn">
-          Add
-          <AddTaskIcon />
-        </button>
+        {addBtnSpinner ? (
+          <BeatLoader color="teal" size={15} className="beat_loader" />
+        ) : (
+          <button className="task_btn">
+            Add
+            <AddTaskIcon />
+          </button>
+        )}
       </form>
       <div className="err_container">
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <Alert msg={"Please enter a task before adding."} />}
       </div>
     </>
   );

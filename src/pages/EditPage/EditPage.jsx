@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditPage.css";
+import Alert from "../../Components/Alert/Alert";
 
 function EditPage() {
   const { id } = useParams();
   const [task, setTask] = useState({});
+  const [showMessage, setShowMessage] = useState(false);
   const [editedTask, setEditedTask] = useState({
     Task: "",
     completed: false,
@@ -19,7 +21,6 @@ function EditPage() {
         );
         const singleTask = response.data.data.task;
         setTask(singleTask);
-        console.log('fetchSingletask function runs')
         setEditedTask((prev) => ({
           ...prev,
           Task: singleTask.Task,
@@ -38,7 +39,10 @@ function EditPage() {
         `https://task-manager-backend-kappa.vercel.app/api/v1/tasks/${id}`,
         editedTask
       );
-      console.log('HandleEdit function runs')
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 1500);
     } catch (error) {
       console.log("Error response from server:", error.response);
     }
@@ -46,7 +50,6 @@ function EditPage() {
 
   const handleInputCheckboxChange = () => {
     setEditedTask((prev) => ({ ...prev, completed: !prev.completed }));
-    console.log('HandleEdit function runs')
   };
 
   return (
@@ -79,11 +82,11 @@ function EditPage() {
             onChange={handleInputCheckboxChange}
           />
         </div>
-        <Link to="/">
-          <button className="edit_task_btn" onClick={handleEdit}>
-            Edit
-          </button>
-        </Link>
+
+        <button className="edit_task_btn" onClick={handleEdit}>
+          Edit
+        </button>
+        <div>{showMessage && <Alert msg={"Successfully Edited"} />}</div>
       </div>
       <Link to="/" className="custom_link">
         <button className="back_to_home_btn">Back To Home Page</button>
