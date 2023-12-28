@@ -19,6 +19,7 @@ function EditPage() {
         );
         const singleTask = response.data.data.task;
         setTask(singleTask);
+        console.log('fetchSingletask function runs')
         setEditedTask((prev) => ({
           ...prev,
           Task: singleTask.Task,
@@ -37,6 +38,7 @@ function EditPage() {
         `https://task-manager-backend-kappa.vercel.app/api/v1/tasks/${id}`,
         editedTask
       );
+      console.log('HandleEdit function runs')
     } catch (error) {
       console.log("Error response from server:", error.response);
     }
@@ -44,6 +46,7 @@ function EditPage() {
 
   const handleInputCheckboxChange = () => {
     setEditedTask((prev) => ({ ...prev, completed: !prev.completed }));
+    console.log('HandleEdit function runs')
   };
 
   return (

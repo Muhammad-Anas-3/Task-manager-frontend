@@ -20,6 +20,7 @@ function HomePage() {
           "https://task-manager-backend-kappa.vercel.app/api/v1/tasks"
         );
         const taskData = response.data.data.tasks;
+        console.log('fetchData function runs')
         setTasks(taskData);
       } catch (error) {
         console.log(error);
@@ -48,14 +49,22 @@ function HomePage() {
         <Spinner />
       ) : (
         <div className="container">
-          <MyForm onHandleCreate={createTask} loading={loading} setLoading={setLoading}/>
+          <MyForm
+            onHandleCreate={createTask}
+            loading={loading}
+            setLoading={setLoading}
+          />
           <TotalTasks tasks={tasks} />
           {tasks.length == 0 ? (
             <NoTask />
           ) : (
             <div className="task_container">
               {tasks.map((task) => (
-                <Task key={task._id + task.completed} task={task} onDelete={deleteTask} />
+                <Task
+                  key={task._id + task.completed}
+                  task={task}
+                  onDelete={deleteTask}
+                />
               ))}
             </div>
           )}
