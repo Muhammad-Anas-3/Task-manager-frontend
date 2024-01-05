@@ -64,9 +64,8 @@ function EditPage() {
         editedTask
       );
       setShowMessage(true);
-      setTimeout(() => {
-        setShowMessage(false);
-      }, 1500);
+      setAlertMessage("Successfully Edited");
+      TimeOutFunction();
       setEditBtnSpinner(false);
     } catch (error) {
       console.log("Error response from server:", error.response);
