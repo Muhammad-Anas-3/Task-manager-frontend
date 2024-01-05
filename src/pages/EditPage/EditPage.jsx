@@ -9,6 +9,7 @@ function EditPage() {
   const { id } = useParams();
   const [task, setTask] = useState({});
   const [showMessage, setShowMessage] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const [editBtnSpinner, setEditBtnSpinner] = useState(false);
   const [editedTask, setEditedTask] = useState({
     Task: "",
@@ -35,6 +36,12 @@ function EditPage() {
     fetchTask();
   }, [id]);
 
+  const TimeOutFunction = () => {
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 2000);
+  };
+
   const handleEdit = async () => {
     // check when the value is equall to empty string so the alert will be shown and the process will be terminated
     if (editedTask.Task === "") {
@@ -43,9 +50,7 @@ function EditPage() {
       TimeOutFunction();
       return;
     }
-
     // check when the value is equall to old value so the alert will be shown and the process will be terminated
-
     if (editedTask.Task === task.Task) {
       setShowMessage(true);
       setAlertMessage("Task already present, please edit again");
@@ -113,7 +118,7 @@ function EditPage() {
           </button>
         )}
         <div className="msg_container">
-          {showMessage && <Alert msg={"Successfully Edited"} />}
+          {showMessage && <Alert msg={alertMessage} />}
         </div>
       </div>
       <Link to="/" className="custom_link">
