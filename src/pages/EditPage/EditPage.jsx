@@ -36,6 +36,22 @@ function EditPage() {
   }, [id]);
 
   const handleEdit = async () => {
+    // check when the value is equall to empty string so the alert will be shown and the process will be terminated
+    if (editedTask.Task === "") {
+      setShowMessage(true);
+      setAlertMessage("Task Is Required and You Enter Empty Value");
+      TimeOutFunction();
+      return;
+    }
+
+    // check when the value is equall to old value so the alert will be shown and the process will be terminated
+
+    if (editedTask.Task === task.Task) {
+      setShowMessage(true);
+      setAlertMessage("Task already present, please edit again");
+      TimeOutFunction();
+      return;
+    }
     setEditBtnSpinner(true);
     try {
       await axios.patch(
